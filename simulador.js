@@ -1,31 +1,36 @@
 // Función para obtener datos de entrada
 function obtenerDatosEntrada() {
     alert("BIENVENIDO AL SIMULADOR")
-    let cantidadCamisas = prompt("Ingrese la cantidad de camisas que desea comprar:");
-    let cantidadPantalones = prompt("Ingrese la cantidad de pantalones que desea comprar:");
-    let precioCamisa = prompt("Ingrese el precio de una camisa:");
-    let precioPantalon = prompt("Ingrese el precio de un pantalón:");
+    
+    const etiquetas = ["camisas", "pantalones"];
+    const precios = [];
 
-    return {
-        cantidadCamisas: parseInt(cantidadCamisas),
-        cantidadPantalones: parseInt(cantidadPantalones),
-        precioCamisa: parseFloat(precioCamisa),
-        precioPantalon: parseFloat(precioPantalon)
-    };
+    for (let etiqueta of etiquetas) {
+        let cantidad = prompt(`Ingrese la cantidad de ${etiqueta} que desea comprar:`);
+        let precio = prompt(`Ingrese el precio de un ${etiqueta}:`);
+        
+        precios.push({
+            cantidad: parseInt(cantidad),
+            precio: parseFloat(precio)
+        });
+    }
+
+    return precios;
 }
 
 // Función para procesar los datos
-function procesarDatos(entrada) {
-    if (isNaN(entrada.cantidadCamisas) || isNaN(entrada.cantidadPantalones) || isNaN(entrada.precioCamisa) || isNaN(entrada.precioPantalon)) {
-        console.error("Error: Ingrese valores numéricos válidos.");
-        return null;
+function procesarDatos(entradas) {
+    for (let entrada of entradas) {
+        if (isNaN(entrada.cantidad) || isNaN(entrada.precio)) {
+            console.error("Error: Ingrese valores numéricos válidos.");
+            return null;
+        }
     }
 
-    let costoCamisas = entrada.cantidadCamisas * entrada.precioCamisa;
-    let costoPantalones = entrada.cantidadPantalones * entrada.precioPantalon;
-    let costoTotal = costoCamisas + costoPantalones;
+    let costos = entradas.map(entrada => entrada.cantidad * entrada.precio);
+    let costoTotal = costos.reduce((total, costo) => total + costo, 0);
 
-    return { costoCamisas, costoPantalones, costoTotal };
+    return { costos, costoTotal };
 }
 
 // Función para mostrar resultados en la consola
@@ -36,15 +41,15 @@ function mostrarResultados(resultados) {
     }
 
     console.log("Resultados:");
-    console.log(`Costo de camisas: $${resultados.costoCamisas.toFixed(2)}`);
-    console.log(`Costo de pantalones: $${resultados.costoPantalones.toFixed(2)}`);
+    resultados.costos.forEach((costo, index) => {
+        console.log(`Costo de ${etiquetas[index]}: $${costo.toFixed(2)}`);
+    });
     console.log(`Costo total de la compra: $${resultados.costoTotal.toFixed(2)}`);
-    alert("la suma de total es:"+resultados.costoTotal)
-    alert("Si desea añade un comentario")
+    alert("la suma de total es:" + resultados.costoTotal);
+    alert("Si desea añade un comentario");
 }
 
 // Llamadas a las funciones
 const datosEntrada = obtenerDatosEntrada();
 const resultados = procesarDatos(datosEntrada);
 mostrarResultados(resultados);
-
