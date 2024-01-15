@@ -1,5 +1,6 @@
 // Función para obtener datos de entrada
 function obtenerDatosEntrada() {
+    alert("BIENVENIDO AL SIMULADOR")
     let cantidadCamisas = prompt("Ingrese la cantidad de camisas que desea comprar:");
     let cantidadPantalones = prompt("Ingrese la cantidad de pantalones que desea comprar:");
     let precioCamisa = prompt("Ingrese el precio de una camisa:");
@@ -39,6 +40,7 @@ function mostrarResultados(resultados) {
     console.log(`Costo de pantalones: $${resultados.costoPantalones.toFixed(2)}`);
     console.log(`Costo total de la compra: $${resultados.costoTotal.toFixed(2)}`);
     alert("la suma de total es:"+resultados.costoTotal)
+    alert("Si desea añade un comentario")
 }
 
 // Llamadas a las funciones
