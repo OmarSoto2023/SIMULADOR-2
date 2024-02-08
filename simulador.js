@@ -1,7 +1,6 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function () {
     cargarDatosAlmacenados();
-    const botonCalcular = document.getElementById('calcularBtn');
+    const botonCalcular = document.querySelector('button[type="button"]');
     botonCalcular.addEventListener('click', calcularCosto);
 });
 
@@ -32,10 +31,10 @@ function calcularCosto() {
     const costoPantalones = cantidadPantalones * precioPantalones;
     const costoTotal = costoCamisas + costoPantalones;
 
-    const resultadosDiv = document.getElementById('listaCarrito');
-    resultadosDiv.innerHTML += `
-        <li>Camisas x${cantidadCamisas}: $${costoCamisas.toFixed(2)}</li>
-        <li>Pantalones x${cantidadPantalones}: $${costoPantalones.toFixed(2)}</li>
+    const resultadosDiv = document.getElementById('resultados');
+    resultadosDiv.innerHTML = `
+        <p>Camisas x${cantidadCamisas}: $${costoCamisas.toFixed(2)}</p>
+        <p>Pantalones x${cantidadPantalones}: $${costoPantalones.toFixed(2)}</p>
     `;
 
     const totalCarrito = document.getElementById('totalCarrito');
@@ -56,9 +55,13 @@ function limpiarFormulario() {
 }
 
 function vaciarCarrito() {
-    const listaCarrito = document.getElementById('listaCarrito');
-    listaCarrito.innerHTML = '';
-    
+    const resultadosDiv = document.getElementById('resultados');
+    resultadosDiv.innerHTML = '';
+
     const totalCarrito = document.getElementById('totalCarrito');
     totalCarrito.textContent = '0.00';
+
+    // Limpiar localStorage
+    localStorage.removeItem('datosSimulador');
 }
+

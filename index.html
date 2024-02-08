@@ -6,26 +6,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="simuladorForm">
-        <!-- Campos para la entrada de datos -->
-        <label for="camisas">Cantidad de camisas:</label>
-        <input type="number" id="camisas" name="camisas" required>
-        
-        <label for="pantalones">Cantidad de pantalones:</label>
-        <input type="number" id="pantalones" name="pantalones" required>
-        
-        <label for="precioCamisas">Precio de una camisa:</label>
-        <input type="number" id="precioCamisas" name="precioCamisas" step="0.01" required>
-        
-        <label for="precioPantalones">Precio de unos pantalones:</label>
-        <input type="number" id="precioPantalones" name="precioPantalones" step="0.01" required>
-        
-        <button type="button" onclick="calcularCosto()">Calcular Costo</button>
-    </form>
+    <div class="container">
+        <form id="simuladorForm">
+            <!-- Campos para la entrada de datos -->
+            <label for="camisas">Cantidad de camisas:</label>
+            <input type="number" id="camisas" name="camisas" required>
+            
+            <label for="pantalones">Cantidad de pantalones:</label>
+            <input type="number" id="pantalones" name="pantalones" required>
+            
+            <label for="precioCamisas">Precio de una camisa:</label>
+            <input type="number" id="precioCamisas" name="precioCamisas" step="0.01" required>
+            
+            <label for="precioPantalones">Precio de unos pantalones:</label>
+            <input type="number" id="precioPantalones" name="precioPantalones" step="0.01" required>
+            
+            <button type="button" onclick="calcularCosto()">Calcular Costo</button>
+        </form>
+    </div>
 
     <!-- Área para mostrar resultados -->
-    <div id="resultados"></div>
+    <div class="container" id="resultados"></div>
 
-    <script src="script.js"></script>
+    <div class="container" id="carrito">
+        <ul id="listaCarrito">
+            <!-- Aquí se mostrarán los elementos del carrito -->
+        </ul>
+        <p>Total: <span id="totalCarrito">0.00</span></p>
+        <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    </div>
+
+    <script src="simulador.js"></script>
 </body>
 </html>
